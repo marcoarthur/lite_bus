@@ -1,0 +1,8 @@
+% layout 'default';
+% title 'List Queue';
+
+<div id="queue_ctn">
+	<ul>
+		<li> <%= $_ while $queue->dequeue %> </li>
+	</ul>
+</div>
