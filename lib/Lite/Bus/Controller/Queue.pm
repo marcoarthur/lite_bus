@@ -4,8 +4,6 @@ use Mojo::Base 'Mojolicious::Controller';
 use experimental qw(signatures);
 use Data::Dumper;
 
-state @QUEUE = [];
-
 sub enqueue( $self ) {
 	my $data = $self->req->body;
 	$self->q->enqueue( $data );
