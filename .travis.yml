@@ -6,6 +6,10 @@ perl:
 before_install:
     - cpanm --notest Devel::Cover::Report::Coveralls
 install:
-    - cpanm --installdeps .
+    - cpanm --notest --installdeps .
+
+script:
+    - prove -lv
+    - cover -test
 after_success:
     - cover -test -report coveralls
