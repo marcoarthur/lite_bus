@@ -5,9 +5,9 @@ use experimental qw(signatures);
 use Data::Dumper;
 
 sub enqueue( $self ) {
-	my $data = $self->req->body;
-	$self->q->enqueue( $data );
-	$self->render( text => $data );
+    my $data = $self->req->body;
+    $self->q->enqueue($data);
+    $self->render( text => $data );
 }
 
 sub list ( $self ) {
