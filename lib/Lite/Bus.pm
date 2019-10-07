@@ -48,6 +48,7 @@ sub startup {
     $r->get('/')->to('example#welcome');
     $r->get('/queue')->to('queue#list');
     $r->post('/enqueue')->to('queue#enqueue');
+	$r->get('/dequeue')->to('queue#dequeue');
 }
 
 1;

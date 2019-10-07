@@ -3,6 +3,7 @@ use Moose;
 use 5.014;
 use experimental qw(signatures);
 use Net::AMQP::RabbitMQ;
+use Data::Dumper;
 use Try::Tiny;
 
 has _queue => (
@@ -63,12 +64,14 @@ sub _build_queue( $self ) {
 sub enqueue ( $self, $data ) {
     $self->log->debug( sprintf "Enqueing %s", $data );
     $self->_queue->publish( $self->_channel, $self->_q_name, $data );
+	return $data;
 }
 
 sub dequeue( $self ) {
     my $data = $self->_queue->get( $self->_channel, $self->_q_name );
     return undef unless $data;
-    $self->log->debug( sprintf "Dequeing %s", $data );
+    $self->log->debug( sprintf "Dequeing %s", Dumper $data );
+	return $data;
 }
 
 __PACKAGE__->meta->make_immutable;

@@ -14,6 +14,11 @@ sub list ( $self ) {
     $self->render( queue => $self->q );
 }
 
+sub dequeue( $self ) {
+	my $data = $self->q->dequeue;
+	$self->render( json => $data );
+}
+
 1;
 
 __END__
