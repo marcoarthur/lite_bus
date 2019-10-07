@@ -8,8 +8,8 @@ addons:
         packages:
             - rabbitmq-server
 
-matrix:
-    env:
+env:
+    matrix:
         - QUEUE_MODEL=Lite::Bus::Model::RabbitQueue
         - QUEUE_MODEL=Lite::Bus::Model::Queue
 before_install:
