@@ -8,8 +8,11 @@ use experimental qw(signatures);
 sub init_helpers( $self ) {
     my $logger = $self->log;
 
-	load_class $self->config->{queue};
+	# Load queue model
     my $q_model  = $self->config->{queue};
+    if ( my $e = load_class $q_model ) {
+        die ref $e ? "Exception: $e" : 'Not found!';
+    }
     my $q_config = $self->config->{queue_config} || {};
 
     $self->helper(
@@ -45,6 +48,7 @@ sub startup {
     $r->get('/')->to('example#welcome');
     $r->get('/queue')->to('queue#list');
     $r->post('/enqueue')->to('queue#enqueue');
+	$r->get('/dequeue')->to('queue#dequeue');
 }
 
 1;

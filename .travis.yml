@@ -3,10 +3,18 @@ perl:
     - "5.28"
     - "5.26"
     - "5.22"
+addons:
+    apt:
+        packages:
+            - rabbitmq-server
+
+env:
+    matrix:
+        - QUEUE_MODEL=Lite::Bus::Model::RabbitQueue
+        - QUEUE_MODEL=Lite::Bus::Model::Queue
 before_install:
     - cpanm --notest Devel::Cover::Report::Coveralls
 install:
     - cpanm --notest --installdeps .
-
 script:
     - prove -lv
