@@ -33,7 +33,7 @@ sub startup {
     my $config = $self->plugin('Config');
 
     # Load Log4perl
-    # $self->log( MojoX::Log::Log4perl->new );
+    $self->log( MojoX::Log::Log4perl->new );
 
     # Configure the application
     $self->secrets( $config->{secrets} );
